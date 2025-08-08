@@ -5,9 +5,7 @@
   <title>Dein Körper in Balance – Selbsttest</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -111,12 +109,30 @@
         <label><input type="radio" name="q3" value="2" /> Vielleicht</label>
         <label><input type="radio" name="q3" value="1" /> Im Moment nicht</label>
       </div>
+      <div class="question">
+        <p>4. Spürst du beim Sport oder im Alltag manchmal ein Trockenheitsgefühl?</p>
+        <label><input type="radio" name="q4" value="3" /> Ja, oft</label>
+        <label><input type="radio" name="q4" value="2" /> Selten</label>
+        <label><input type="radio" name="q4" value="1" /> Nie</label>
+      </div>
+      <div class="question">
+        <p>5. Hat sich dein Wohlbefinden im Intimbereich in den letzten Jahren verändert?</p>
+        <label><input type="radio" name="q5" value="3" /> Stark</label>
+        <label><input type="radio" name="q5" value="2" /> Ein wenig</label>
+        <label><input type="radio" name="q5" value="1" /> Gar nicht</label>
+      </div>
+      <div class="question">
+        <p>6. Würdest du dich über eine natürliche Pflege für mehr Wohlgefühl freuen?</p>
+        <label><input type="radio" name="q6" value="3" /> Ja, unbedingt</label>
+        <label><input type="radio" name="q6" value="2" /> Vielleicht</label>
+        <label><input type="radio" name="q6" value="1" /> Im Moment nicht</label>
+      </div>
       <button type="submit">Ergebnis anzeigen</button>
       <div id="result"></div>
     </form>
 
-    <a class="cta" href="https://www.erschaffe-dich-neu.at/ich-bin-genug-kampagne" target="_blank">
-      🌿 Erfahre mehr – Pflege für dein Gleichgewicht
+    <a class="cta" href="https://damiva.com/mariannehammerle" target="_blank">
+      🌿 Erfahre mehr über natürliche Pflege von Damiva
     </a>
   </div>
 
@@ -124,7 +140,7 @@
     document.getElementById("quizForm").addEventListener("submit", function (event) {
       event.preventDefault();
       let total = 0;
-      for (let i = 1; i <= 3; i++) {
+      for (let i = 1; i <= 6; i++) {
         const answer = document.querySelector(`input[name="q${i}"]:checked`);
         if (!answer) {
           alert("Bitte beantworte alle Fragen.");
@@ -134,10 +150,10 @@
       }
 
       const resultDiv = document.getElementById("result");
-      if (total >= 7) {
-        resultDiv.textContent = "💗 Dein Körper sendet dir klare Signale – gönn dir liebevolle Pflege.";
-      } else if (total >= 4) {
-        resultDiv.textContent = "🌸 Du bist im Übergang – achte gut auf deine Bedürfnisse.";
+      if (total >= 14) {
+        resultDiv.textContent = "💗 Dein Körper sendet dir klare Signale – gönn dir liebevolle, natürliche Pflege.";
+      } else if (total >= 8) {
+        resultDiv.textContent = "🌸 Du bist im Übergang – achte gut auf deine Bedürfnisse und probiere sanfte Pflege.";
       } else {
         resultDiv.textContent = "🌿 Du scheinst in Balance zu sein – bleib achtsam mit dir!";
       }
