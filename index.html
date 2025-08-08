@@ -127,6 +127,12 @@
         <label><input type="radio" name="q6" value="2" /> Vielleicht</label>
         <label><input type="radio" name="q6" value="1" /> Im Moment nicht</label>
       </div>
+      <div class="question">
+        <p>7. Hast du in letzter Zeit weniger Lust auf Sex?</p>
+        <label><input type="radio" name="q7" value="3" /> Ja, deutlich weniger</label>
+        <label><input type="radio" name="q7" value="2" /> Etwas weniger</label>
+        <label><input type="radio" name="q7" value="1" /> Nein, keine Veränderung</label>
+      </div>
       <button type="submit">Ergebnis anzeigen</button>
       <div id="result"></div>
     </form>
@@ -140,7 +146,7 @@
     document.getElementById("quizForm").addEventListener("submit", function (event) {
       event.preventDefault();
       let total = 0;
-      for (let i = 1; i <= 6; i++) {
+      for (let i = 1; i <= 7; i++) {
         const answer = document.querySelector(`input[name="q${i}"]:checked`);
         if (!answer) {
           alert("Bitte beantworte alle Fragen.");
@@ -150,9 +156,9 @@
       }
 
       const resultDiv = document.getElementById("result");
-      if (total >= 14) {
+      if (total >= 16) {
         resultDiv.textContent = "💗 Dein Körper sendet dir klare Signale – gönn dir liebevolle, natürliche Pflege.";
-      } else if (total >= 8) {
+      } else if (total >= 10) {
         resultDiv.textContent = "🌸 Du bist im Übergang – achte gut auf deine Bedürfnisse und probiere sanfte Pflege.";
       } else {
         resultDiv.textContent = "🌿 Du scheinst in Balance zu sein – bleib achtsam mit dir!";
