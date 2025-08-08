@@ -2,60 +2,146 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <title>Dein Körper in Balance</title>
+  <title>Dein Körper in Balance – Selbsttest</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
     body {
       margin: 0;
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background: url('https://images.unsplash.com/photo-1611601184963-4d70d0fd27c1?auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
+      background: url('https://images.unsplash.com/photo-1590080875951-30c69b1b5a0b?auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
       background-size: cover;
       color: #fff;
     }
     .overlay {
-      background-color: rgba(0, 0, 0, 0.5);
+      background-color: rgba(0, 0, 0, 0.7);
       min-height: 100vh;
+      padding: 40px 20px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 40px 20px;
-      text-align: center;
     }
     h1 {
-      font-size: 3rem;
+      font-size: 2.5rem;
+      margin-bottom: 30px;
       color: #ffcc00;
-      margin-bottom: 20px;
+      text-align: center;
     }
-    p {
-      font-size: 1.3rem;
-      max-width: 700px;
-      margin-bottom: 40px;
+    form {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 600px;
+      width: 100%;
     }
-    a.button {
+    .question {
+      margin-bottom: 25px;
+    }
+    .question p {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      color: #ffd;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+    button {
       background-color: #ff6600;
       color: #fff;
-      text-decoration: none;
-      padding: 16px 32px;
-      font-size: 1.2rem;
-      border-radius: 8px;
-      font-weight: bold;
-      transition: background-color 0.3s ease;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      border-radius: 6px;
+      width: 100%;
+      margin-top: 20px;
     }
-    a.button:hover {
+    button:hover {
       background-color: #e65c00;
+    }
+    #result {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #ffcc00;
+    }
+    .cta {
+      display: block;
+      margin-top: 30px;
+      text-align: center;
+      font-size: 1.2rem;
+      color: #ffcc00;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .cta:hover {
+      color: #ffffff;
     }
   </style>
 </head>
 <body>
   <div class="overlay">
-    <h1>Dein Körper in Balance</h1>
-    <p>Finde zurück zu mehr Wohlgefühl, Weiblichkeit und Pflege.  
-    Entdecke, was dein Körper gerade braucht – liebevoll und ehrlich.</p>
-    <a class="button" href="https://mariannehaemmerle.github.io/koerper-balance/" target="_blank">
-      💗 Jetzt Selbsttest starten
+    <h1>Dein Körper in Balance – Selbsttest</h1>
+    <form id="quizForm">
+      <div class="question">
+        <p>1. Spürst du Veränderungen im Intimbereich?</p>
+        <label><input type="radio" name="q1" value="3" /> Ja, deutlich</label>
+        <label><input type="radio" name="q1" value="2" /> Ein wenig</label>
+        <label><input type="radio" name="q1" value="1" /> Nein, kaum</label>
+      </div>
+      <div class="question">
+        <p>2. Fühlt sich deine Haut dort empfindlicher oder trockener an?</p>
+        <label><input type="radio" name="q2" value="3" /> Sehr</label>
+        <label><input type="radio" name="q2" value="2" /> Ein bisschen</label>
+        <label><input type="radio" name="q2" value="1" /> Gar nicht</label>
+      </div>
+      <div class="question">
+        <p>3. Hast du Lust auf mehr Wohlgefühl und sanfte Pflege?</p>
+        <label><input type="radio" name="q3" value="3" /> Unbedingt</label>
+        <label><input type="radio" name="q3" value="2" /> Vielleicht</label>
+        <label><input type="radio" name="q3" value="1" /> Im Moment nicht</label>
+      </div>
+      <button type="submit">Ergebnis anzeigen</button>
+      <div id="result"></div>
+    </form>
+
+    <a class="cta" href="https://www.erschaffe-dich-neu.at/ich-bin-genug-kampagne" target="_blank">
+      🌿 Erfahre mehr – Pflege für dein Gleichgewicht
     </a>
   </div>
+
+  <script>
+    document.getElementById("quizForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+      let total = 0;
+      for (let i = 1; i <= 3; i++) {
+        const answer = document.querySelector(`input[name="q${i}"]:checked`);
+        if (!answer) {
+          alert("Bitte beantworte alle Fragen.");
+          return;
+        }
+        total += parseInt(answer.value);
+      }
+
+      const resultDiv = document.getElementById("result");
+      if (total >= 7) {
+        resultDiv.textContent = "💗 Dein Körper sendet dir klare Signale – gönn dir liebevolle Pflege.";
+      } else if (total >= 4) {
+        resultDiv.textContent = "🌸 Du bist im Übergang – achte gut auf deine Bedürfnisse.";
+      } else {
+        resultDiv.textContent = "🌿 Du scheinst in Balance zu sein – bleib achtsam mit dir!";
+      }
+    });
+  </script>
 </body>
 </html>
