@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dein Körper in Balance</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: url('https://images.unsplash.com/photo-1549187774-b4e9b0445b06?auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.6);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+    h1 {
+      font-size: 2.4rem;
+      text-align: center;
+      color: #ffcc00;
+      margin-bottom: 20px;
+    }
+    p.subtitle {
+      font-size: 1.2rem;
+      text-align: center;
+      max-width: 600px;
+      margin-bottom: 40px;
+    }
+    form {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 700px;
+      width: 100%;
+    }
+    .question {
+      margin-bottom: 25px;
+    }
+    .question p {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      color: #ffd;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+    button {
+      background-color: #ff6600;
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      border-radius: 6px;
+      width: 100%;
+      margin-top: 20px;
+    }
+    button:hover {
+      background-color: #e65c00;
+    }
+    #result {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #ffcc00;
+    }
+    .cta {
+      display: block;
+      margin-top: 30px;
+      text-align: center;
+      font-size: 1.2rem;
+      color: #ffcc00;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .cta:hover {
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <h1>Dein Körper in Balance</h1>
+    <p class="subtitle">Ein kurzer Selbsttest für dich als Frau – liebevoll, diskret, ehrlich.</p>
+    <form id="quizForm">
+      <div class="question">
+        <p>1. Spürst du Trockenheit oder Spannungsgefühle im äußeren Intimbereich?</p>
+        <label><input type="radio" name="q1" value="3" /> Ja, regelmäßig</label>
+        <label><input type="radio" name="q1" value="2" /> Manchmal</label>
+        <label><input type="radio" name="q1" value="1" /> Selten oder nie</label>
+      </div>
+      <div class="question">
+        <p>2. Fühlt sich deine Haut im Intimbereich empfindlicher an als früher?</p>
+        <label><input type="radio" name="q2" value="3" /> Ja, sehr</label>
+        <label><input type="radio" name="q2" value="2" /> Ein wenig</label>
+        <label><input type="radio" name="q2" value="1" /> Nein</label>
+      </div>
+      <div class="question">
+        <p>3. Bemerkst du Veränderungen durch die Wechseljahre?</p>
+        <label><input type="radio" name="q3" value="3" /> Deutlich</label>
+        <label><input type="radio" name="q3" value="2" /> Teilweise</label>
+        <label><input type="radio" name="q3" value="1" /> Kaum</label>
+      </div>
+      <div class="question">
+        <p>4. Nimmst du dir bewusst Zeit für Intimpflege?</p>
+        <label><input type="radio" name="q4" value="1" /> Ja, regelmäßig</label>
+        <label><input type="radio" name="q4" value="2" /> Selten</label>
+        <label><input type="radio" name="q4" value="3" /> Fast nie</label>
+      </div>
+      <div class="question">
+        <p>5. Hast du beim Sitzen oder Sport manchmal ein unangenehmes Gefühl?</p>
+        <label><input type="radio" name="q5" value="3" /> Oft</label>
+        <label><input type="radio" name="q5" value="2" /> Gelegentlich</label>
+        <label><input type="radio" name="q5" value="1" /> Nie</label>
+      </div>
+      <div class="question">
+        <p>6. Würdest du dir mehr Wohlgefühl und Pflege im Intimbereich wünschen?</p>
+        <label><input type="radio" name="q6" value="3" /> Ja, definitiv</label>
+        <label><input type="radio" name="q6" value="2" /> Vielleicht</label>
+        <label><input type="radio" name="q6" value="1" /> Ich bin zufrieden</label>
+      </div>
+
+      <button type="submit">Ergebnis anzeigen</button>
+      <div id="result"></div>
+    </form>
+
+    <a class="cta" href="https://damiva-shop.com/products/cleo" target="_blank">
+      🌸 Erfahre mehr über Cleo
+    </a>
+  </div>
+
+  <script>
+    document.getElementById("quizForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+      let total = 0;
+      for (let i = 1; i <= 6; i++) {
+        const answer = document.querySelector(`input[name="q${i}"]:checked`);
+        if (!answer) {
+          alert("Bitte beantworte alle Fragen.");
+          return;
+        }
+        total += parseInt(answer.value);
+      }
+
+      const resultDiv = document.getElementById("result");
+      if (total >= 15) {
+        resultDiv.textContent = "💖 Du darfst dir ganz bewusst Gutes tun. Cleo kann dich sanft unterstützen.";
+      } else if (total >= 9) {
+        resultDiv.textContent = "🌼 Kleine Zeichen von Trockenheit oder Unwohlsein – Cleo könnte genau das Richtige für dich sein.";
+      } else {
+        resultDiv.textContent = "🌷 Du bist im Gleichgewicht – wunderbar! Pflege darf trotzdem ein liebevoller Teil deines Alltags sein.";
+      }
+    });
+  </script>
+</body>
+</html>
